@@ -12,6 +12,7 @@ export default function Home() {
   const [messages, setMessages] = useState([
     { sender: "system", text: "Welcome to FRONTIER Playground! Ask me anything." },
   ]);
+  const [selectedModel, setSelectedModel] = useState("model1");
 
   const handleSend = () => {
     if (input.trim()) {
@@ -21,7 +22,7 @@ export default function Home() {
       setTimeout(() => {
         setMessages((prevMessages) => [
           ...prevMessages,
-          { sender: "system", text: "This is a simulated response." },
+          { sender: "system", text: `Response from ${selectedModel}` },
         ]);
       }, 1000);
     }
@@ -32,6 +33,18 @@ export default function Home() {
       <div className={styles.header}>
         <Image src="/frontier-logo.png" alt="FRONTIER Logo" width={150} height={50} />
         <h1>FRONTIER Playground</h1>
+      </div>
+      <div className={styles.modelSelector}>
+        <label htmlFor="model">Select Model:</label>
+        <select
+          id="model"
+          value={selectedModel}
+          onChange={(e) => setSelectedModel(e.target.value)}
+        >
+          <option value="model1">Model 1</option>
+          <option value="model2">Model 2</option>
+          <option value="model3">Model 3</option>
+        </select>
       </div>
       <div className={styles.chatContainer}>
         {messages.map((message, index) => (

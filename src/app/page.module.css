@@ -15,8 +15,20 @@
   margin-bottom: 20px;
 }
 
+.modelSelector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
 .header h1 {
   font-size: 2rem;
+  color: #333;
+}
+
+.modelSelector label {
+  font-size: 1rem;
   color: #333;
 }
 
@@ -32,6 +44,36 @@
   margin-bottom: 20px;
   overflow-y: auto;
   max-height: 60vh;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
 }
 
 .message {
@@ -58,6 +100,12 @@
   display: flex;
   width: 100%;
   max-width: 600px;
+}
+
+.modelSelector select {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 .input {
