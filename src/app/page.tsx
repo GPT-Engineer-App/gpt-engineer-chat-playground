@@ -8,7 +8,7 @@ import styles from "./page.module.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState("Type your message here...");
   const [messages, setMessages] = useState([
     { sender: "system", text: "Welcome to FRONTIER Playground! Ask me anything." },
   ]);
