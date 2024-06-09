@@ -12,20 +12,33 @@ export default function Home() {
   const [messages, setMessages] = useState([
     { sender: "system", text: "Welcome to FRONTIER Playground! Ask me anything." },
   ]);
-  const [selectedModel, setSelectedModel] = useState("model1");
+  const [selectedModels, setSelectedModels] = useState(["model1"]);
 
   const handleSend = () => {
     if (input.trim()) {
       setMessages([...messages, { sender: "user", text: input }]);
       setInput("");
-      // Simulate a response from the system
-      setTimeout(() => {
-        setMessages((prevMessages) => [
-          ...prevMessages,
-          { sender: "system", text: `Response from ${selectedModel}` },
-        ]);
-      }, 1000);
+      // Simulate a response from the system for each selected model
+      selectedModels.forEach((model) => {
+        setTimeout(() => {
+          setMessages((prevMessages) => [
+            ...prevMessages,
+            { sender: "system", text: `Response from ${model}` },
+          ]);
+        }, 1000);
+      });
     }
+  };
+
+  const handleModelChange = (e) => {
+    const options = e.target.options;
+    const selected = [];
+    for (let i = 0; i < options.length; i++) {
+      if (options[i].selected) {
+        selected.push(options[i].value);
+      }
+    }
+    setSelectedModels(selected);
   };
 
   return (
@@ -35,11 +48,12 @@ export default function Home() {
         <h1>FRONTIER Playground</h1>
       </div>
       <div className={styles.modelSelector}>
-        <label htmlFor="model">Select Model:</label>
+        <label htmlFor="model">Select Models:</label>
         <select
           id="model"
-          value={selectedModel}
-          onChange={(e) => setSelectedModel(e.target.value)}
+          multiple
+          value={selectedModels}
+          onChange={handleModelChange}
         >
           <option value="model1">Model 1</option>
           <option value="model2">Model 2</option>
